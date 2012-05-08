@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Locks of Love at Washington University in St. Louis</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600">
+    <link rel="stylesheet" type="text/css" href="/css/login.css" />
+    <script src="/js/jquery-1.7.2.min.js"></script>
+    <script src="/js/animate-colors.min.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/common.js"></script>
+  </head>
+  <body>
+    <div id="login_sidebar">
+      <div class="content">
+        <div id="site_logo">
+          <img src="/images/logo-pink-2.png" />
+        </div>
+        <div id="site_info">
+          <div id="site_name"><a class="b" href="/">washulol</a></div>
+        </div>
+      </div>
+    </div>
+    <div id="login_container">
+      <div class="content">
+        <form action="/authenticate" data-url="<%= request %>">
+          <div class="input_text">
+            <input type="text" class="placeholder title" data-placeholder="Email" tabindex="-1" />
+            <input type="text" class="title" maxlength=100 name="email" />
+          </div>
+          <div class="input_text">
+            <input type="text" class="placeholder title" data-placeholder="Password" tabindex="-1" />
+            <input type="password" class="title" maxlength=100 name="password" />
+          </div>
+          <br />
+          <a class="button login">LOG IN &raquo;</a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

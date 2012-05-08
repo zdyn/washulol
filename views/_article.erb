@@ -1,0 +1,31 @@
+<div class="article">
+  <div class="article_info">
+    <div class="article_cdate"><%= article.created_at.strftime("%^b %e %Y") %></div>
+    <div class="article_type"><a class="b" href=""><%= article.type %></a></div>
+  </div>
+  <div class="article_content_container">
+    <div class="article_content">
+      <div class="article_title"><a class="b" href=""><%= if article.title != "" then article.title  else "Untitled" end %></a></div>
+      <div class="article_author"><span class="light_weight">by</span> <a class="b" href=""><%= article.author %></a> <span class="light_weight">(<%= article.relative_created_at %>)</span></div>
+      <% if article.event %>
+        <div class="event_info">
+          <div class="event_data">
+            <img src="/icons/calendar.png" /><%= article.event.start_date.strftime("%A, %B #{start_date.day.ordinal}, %Y") %>
+            <% if article.event.end_date %>
+              <span class="light_weight">to</span> <%= article.event.end_date.strftime("%A, %B #{end_date.day.ordinal}, %Y") %>
+            <% end %>
+          </div>
+          <div class="event_data">
+            <img src="/icons/time.png" /><%= article.event.start_time.strftime("%i:%M %p") %>
+            <% if article.event.end_time %>
+              <span class="light_weight">until</span> <%= article.event.end_time.strftime("%i:%M %p") %>
+            <% end %>
+          </div>
+          <div class="event_data"><img src="/icons/map-marker.png" /><%= article.event.location %></div>
+        </div>
+      <% end %>
+      <div class="content"><%= if article.post != "" then h(article.post).gsub(/(\r)?\n/, "<br />") else "Nothing here." end %></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

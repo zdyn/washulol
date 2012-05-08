@@ -1,0 +1,11 @@
+source "http://rubygems.org"
+
+gem "sinatra"
+gem "sinatra-contrib"
+gem "thin"
+gem "sass"
+gem "coffee-script"
+gem "sequel"
+gem "mysql2"
+gem "facets"
+gem "bcrypt-ruby"

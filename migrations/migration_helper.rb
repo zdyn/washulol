@@ -1,0 +1,1 @@
+Sequel::MySQL.default_engine = "InnoDB"

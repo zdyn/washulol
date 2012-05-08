@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Locks of Love at Washington University in St. Louis</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600">
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <script src="/js/jquery-1.7.2.min.js"></script>
+    <script src="/js/animate-colors.min.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/common.js"></script>
+  </head>
+  <body>
+    <div id="site_sidebar">
+      <div id="site_logo">
+        <img src="/images/logo-pink-2.png" />
+      </div>
+      <div id="site_info">
+        <div id="site_name"><a class="b" href="/">washulol</a></div>
+        <div id="site_blurb">Believe you can and you're halfway there.</div>
+        <div id="site_links">
+          <a href="http://www.facebook.com/pages/Washington-University-Locks-of-Love/48766241305">on facebook</a>
+          <a href="mailto:washulol@gmail.com">or email us</a>
+        </div>
+      </div>
+      <div id="site_author">by Jing Zhou</div>
+    </div>
+    <header><%= @title %></header>
+    <nav>
+      <a href="/">HOME</a>
+      <a href="/blog">BLOG</a>
+      <a href="/events">EVENTS</a>
+      <a href="/photos">PHOTOS</a>
+      <a href="/about">ABOUT</a>
+      <a href="/login">LOG IN</a>
+    </nav>
+    <div id="content_container">
+      <div id="content"><%= yield %></div>
+    </div>
+    <footer></footer>
+  </body>
+</html>
