@@ -1,110 +1,58 @@
 <div class="section_container">
   <div class="section">
     <div class="table">
-      <div class="table_info">
-        <div class="table_title">Frontpage Articles</div>
-        <div class="table_nav">
-          <span class="light_weight">Displaying</span> 1-10 <span class="light_weight">of</span> 20
-          <div class="table_nav_buttons">
-            <a class="b"><img src="/icons/arrow-left.png" /><img src="/icons/arrow-left.png" /></a>
-            <a class="b"><img src="/icons/arrow-right.png" /><img src="/icons/arrow-right.png" /></a>
-          </div>
-        </div>
-        <div class="clear"></div>
-      </div>
       <div class="table_header">
-        <div class="column created"><a class="b" href="">Created</a> <img src="/icons/arrow-down.png" /></div>
-        <div class="column modified"><a class="b" href="">Modified</a></div>
-        <div class="column name"><a class="b" href="">Name</a></div>
-      </div>
-      <div class="table_content">
-        <div class="row link">
-          <div class="column created">&nbsp;4/20/12 &nbsp;9:00 AM</div>
-          <div class="column modified">&nbsp;4/20/12 &nbsp;9:00 AM</div>
-          <div class="column name">Locks of Love Fall 2012</div>
-        </div>
-        <div class="row link">
-          <div class="column created">12/20/11 11:32 PM</div>
-          <div class="column modified">12/20/11 11:32 PM</div>
-          <div class="column name">Locks of Love Fall 2012</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="section_container">
-  <div class="section">
-    <div class="table">
-      <div class="table_info">
         <div class="table_title">Blog Posts</div>
-        <div class="table_nav">
-          <span class="light_weight">Displaying</span> 1-4 <span class="light_weight">of</span> 4
-          <div class="table_nav_buttons">
-            <a class="b"><img src="/icons/arrow-left.png" /><img src="/icons/arrow-left.png" /></a>
-            <a class="b"><img src="/icons/arrow-right.png" /><img src="/icons/arrow-right.png" /></a>
-          </div>
+        <div class="table_buttons">
+          <a class="button" href="/admin/blog_post">NEW</a>
         </div>
         <div class="clear"></div>
       </div>
-      <div class="table_header">
-        <div class="column created"><a class="b" href="">Created</a> <img src="/icons/arrow-down.png" /></div>
-        <div class="column modified"><a class="b" href="">Modified</a></div>
-        <div class="column name"><a class="b" href="">Title</a></div>
-      </div>
-      <div class="table_content">
-        <div class="row link">
-          <div class="column created">&nbsp;4/20/12 &nbsp;9:00 AM</div>
-          <div class="column modified">&nbsp;4/20/12 &nbsp;9:00 AM</div>
-          <div class="column name">Locks of Love Fall 2012</div>
+      <% if blog_posts.count > 0 %>
+        <div class="table_content">
+          <% blog_posts.limit(5).each do |blog_post| %>
+            <div class="row"><a class="b" href="/admin/blog_post/<%= blog_post.id %>"><%= blog_post.title %></a></div>
+          <% end %>
         </div>
-        <div class="row link">
-          <div class="column created">12/20/11 11:32 PM</div>
-          <div class="column modified">12/20/11 11:32 PM</div>
-          <div class="column name">Locks of Love Fall 2012</div>
+        <div class="table_nav" data-table="blog_posts">
+          <span class="light_weight">Page</span>
+          <span class="current_page">1</span>
+          <a class="button">&lsaquo;</a><a class="button">&rsaquo;</a>
         </div>
-      </div>
+      <% else %>
+        <div class="table_content">
+          <div class="nothing_here">Nothing to see here.</div>
+        </div>
+      <% end %>
     </div>
-  </div>
-  <div class="buttons">
-    <a class="button expand" href="/admin/blog_post">NEW BLOG POST</a>
-    <div class="clear"></div>
   </div>
 </div>
 <div class="section_container">
   <div class="section">
     <div class="table">
-      <div class="table_info">
+      <div class="table_header">
         <div class="table_title">Events</div>
-        <div class="table_nav">
-          <span class="light_weight">Displaying</span> 1-10 <span class="light_weight">of</span> 20
-          <div class="table_nav_buttons">
-            <a class="b"><img src="/icons/arrow-left.png" /><img src="/icons/arrow-left.png" /></a>
-            <a class="b"><img src="/icons/arrow-right.png" /><img src="/icons/arrow-right.png" /></a>
-          </div>
+        <div class="table_buttons">
+          <a class="button" href="/admin/event">NEW</a>
         </div>
         <div class="clear"></div>
       </div>
-      <div class="table_header">
-        <div class="column created"><a class="b" href="">Created</a> <img src="/icons/arrow-down.png" /></div>
-        <div class="column modified"><a class="b" href="">Modified</a></div>
-        <div class="column name"><a class="b" href="">Name</a></div>
-      </div>
-      <div class="table_content">
-        <div class="row link">
-          <div class="column created">&nbsp;4/20/12 &nbsp;9:00 AM</div>
-          <div class="column modified">&nbsp;4/20/12 &nbsp;9:00 AM</div>
-          <div class="column name">Locks of Love Fall 2012</div>
+      <% if events.count > 0 %>
+        <div class="table_content">
+          <% events.limit(5).each do |event| %>
+            <div class="row"><a class="b" href="/admin/event/<%= event.id %>"><%= event.title %></a></div>
+          <% end %>
         </div>
-        <div class="row link">
-          <div class="column created">12/20/11 11:32 PM</div>
-          <div class="column modified">12/20/11 11:32 PM</div>
-          <div class="column name">Locks of Love Fall 2012</div>
+        <div class="table_nav" data-table="events">
+          <span class="light_weight">Page</span>
+          <span class="current_page">1</span>
+          <a class="button">&lsaquo;</a><a class="button">&rsaquo;</a>
         </div>
-      </div>
+      <% else %>
+        <div class="table_content">
+          <div class="nothing_here">Nothing to see here.</div>
+        </div>
+      <% end %>
     </div>
-  </div>
-  <div class="buttons">
-    <a class="button expand" href="/admin/event">NEW EVENT</a>
-    <div class="clear"></div>
   </div>
 </div>

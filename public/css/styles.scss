@@ -53,16 +53,13 @@ img {
 }
 a {
   position: relative;
-  color: #000;
+  color: $accent-color;
   text-decoration: none;
-  border-bottom: 1px solid #000;
 
-  &:hover {
-    color: $accent-color;
-    border-color: $accent-color;
-  }
+  &:hover { border-bottom: 1px solid $accent-color; }
   // for links without underlines
   &.b {
+    color: #000;
     border: none;
 
     &:hover {
@@ -250,6 +247,7 @@ nav {
     margin-left: 5px;
     padding: 6px 15px;
     font-weight: normal;
+    color: #000;
     border: none;
     border-radius: 2px;
 
@@ -285,7 +283,7 @@ nav {
       }
       .article_info {
         float: left;
-        width: 105px;
+        width: 115px;
         padding: 5px 0;
         padding-right: 5px;
         text-align: right;
@@ -298,12 +296,15 @@ nav {
         }
         .article_type {
           margin-top: 4px;
-          font-size: 16px;
+          font: {
+            weight: bold;
+            size: 16px;
+          }
         }
       }
       .article_content_container {
         float: left;
-        width: 830px;
+        width: 820px;
 
         .article_content {
           padding: 0 10px;
@@ -391,76 +392,56 @@ nav {
         width: 940px;
         margin: 0;
 
-        .table_info {
-          padding-bottom: 5px;
-          line-height: 30px;
+        .table_header {
+          padding-bottom: 10px;
+          line-height: 36px;
 
           .table_title {
             float: left;
-            font-size: 22px;
+            font-size: 24px;
           }
-          .table_nav {
+          .table_buttons {
             float: right;
 
-            .table_nav_buttons {
-              display: inline-block;
-
-              a {
-                position: relative;
-                margin-left: 10px;
-                opacity: 0.7;
-
-                &:hover {
-                  cursor: pointer;
-                  opacity: 1;
-                }
-                img {
-                  height: 9px;
-                  vertical-align: baseline;
-                }
-              }
+            .button {
+              line-height: 20px;
+              width: 36px;
+              text-align: center;
             }
           }
-        }
-        .table_header {
-          height: 20px;
-          padding: 2px 0;
-          font-weight: 600;
-          line-height: 20px;
-          background: #f7f7f7;
-          border-top: 1px solid #bbb;
-          border-bottom: 1px solid #bbb;
-
-          a { text-decoration: none; }
         }
         .table_content {
-          .column {
-            &.created, &.modified { font-family: $font-family-mono; }
+
+          .row {
+            display: block;
+            height: 20px;
+            padding: 8px 10px;
+            font-size: 16px;
+            border-bottom: 1px solid #e7e7e7;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            &:first-child { border-top: 1px solid #e7e7e7; }
+          }
+          .nothing_here {
+            font-style: italic;
+            color: #333;
           }
         }
-        .row {
-          display: block;
-          height: 20px;
-          padding: 2px 0;
-          border-bottom: 1px solid #e7e7e7;
+        .table_nav {
+          padding-top: 10px;
+          text-align: right;
 
-          &.link {
-            &:hover {
-              @include select_none;
-              cursor: default;
-              color: $accent-color;
-            }
+          span { line-height: 28px; }
+          .button {
+            width: 20px;
+            margin-left: 8px;
+            padding: 4px 8px;
+            text-align: center;
+
+            &:last-child { margin-left: 4px; }
           }
-        }
-        .column {
-          padding: 0 5px;
-          float: left;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-
-          &.created, &.modified { width: 130px; }
-          &.name { width: 200px; }
         }
       }
     }
@@ -489,5 +470,5 @@ nav {
 // footer
 footer {
   margin-left: 220px;
-  height: 60px;
+  height: 80px;
 }

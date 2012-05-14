@@ -3,18 +3,15 @@ window.Utils =
     data = {}
     elements = form.find("input, textarea")
     elements.filter(filter) if filter
-    $.each elements, (i, element) ->
+    for element in elements
       if element.name
         switch element.type
           when "checkbox"
             data[element.name] = $(element).is(":checked")
-            true
           when "radio"
             data[element.name] = $(element).val() if $(element).is(":checked")
-            true
           else
             data[element.name] = $(element).val()
-            true
     data
 
 $ = jQuery

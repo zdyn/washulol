@@ -6,16 +6,17 @@ $.fn.login = ->
   $.extend(login, {
     init: ->
       loginButton = this.find("a.button.login")
-      this.on "click", "a.button.login", @authenticate
+      this.on "click", "a.button.login", @authorize
       this.on "keypress", "input", (e) =>
-        @authenticate.call(loginButton) if e.which == 13
-    authenticate: (e) ->
+        @authorize.call(loginButton) if e.which == 13
+      this.find("input[name=email]").focus()
+    authorize: (e) ->
       return if login.loggingIn
       $(this).html("LOGGING IN...").css("backgroundColor", "#ec008b")
       login.loggingIn = true
       $.ajax
         type: "post"
-        url: "/authenticate"
+        url: "/authorize"
         data: Utils.getFormData(login)
         success: =>
           if login.data("url") and login.data("url").indexOf("/login") != 0
