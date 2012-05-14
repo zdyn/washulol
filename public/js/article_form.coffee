@@ -78,3 +78,7 @@ $.fn.articleForm = ->
 
 $ ->
   $(".section_container").articleForm()
+  Utils.preloadImages([
+    "/icons/pencil.png",
+    "/icons/check.png"
+  ])

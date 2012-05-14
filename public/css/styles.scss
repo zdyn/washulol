@@ -275,7 +275,7 @@ nav {
   #articles, .section_container {
 
     .article {
-      padding: 30px 20px;
+      padding: 50px 20px;
       border-bottom: 1px solid #d7d7d7;
 
       &:last-child {
@@ -424,10 +424,7 @@ nav {
 
             &:first-child { border-top: 1px solid #e7e7e7; }
           }
-          .nothing_here {
-            font-style: italic;
-            color: #333;
-          }
+          .nothing_here { color: #333; }
         }
         .table_nav {
           padding-top: 10px;

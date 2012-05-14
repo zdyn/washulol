@@ -72,10 +72,13 @@ class WashuLOL < Sinatra::Base
   end
 
   post "/admin/get_articles" do
-    if params[:get_events]
-      Article.exclude(:event_id => nil).limit(5, params[:offset])
-    else
-      Article.filter(:event_id => nil).limit(5, params[:offset])
+    case params[:type]
+      when "blog_posts"
+        Article.select(:id, :title).filter(:event_id => nil).limit(5, params[:offset]).to_json
+      when "events"
+        Article.select(:id, :title).exclude(:event_id => nil).limit(5, params[:offset]).to_json
+      else
+        nil
     end
   end
 

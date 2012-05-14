@@ -1,3 +1,4 @@
+<script src="/js/admin.js"></script>
 <div class="section_container">
   <div class="section">
     <div class="table">
@@ -11,17 +12,17 @@
       <% if blog_posts.count > 0 %>
         <div class="table_content">
           <% blog_posts.limit(5).each do |blog_post| %>
-            <div class="row"><a class="b" href="/admin/blog_post/<%= blog_post.id %>"><%= blog_post.title %></a></div>
+            <div class="row"><a class="b" href="/admin/blog_post/<%= blog_post.id %>"><%= if blog_post.title != "" then blog_post.title  else "Untitled" end %></a></div>
           <% end %>
         </div>
-        <div class="table_nav" data-table="blog_posts">
+        <div class="table_nav" data-type="blog_posts" data-offset="0">
           <span class="light_weight">Page</span>
           <span class="current_page">1</span>
           <a class="button">&lsaquo;</a><a class="button">&rsaquo;</a>
         </div>
       <% else %>
         <div class="table_content">
-          <div class="nothing_here">Nothing to see here.</div>
+          <div class="nothing_here">Nothing here.</div>
         </div>
       <% end %>
     </div>
@@ -40,17 +41,17 @@
       <% if events.count > 0 %>
         <div class="table_content">
           <% events.limit(5).each do |event| %>
-            <div class="row"><a class="b" href="/admin/event/<%= event.id %>"><%= event.title %></a></div>
+            <div class="row"><a class="b" href="/admin/event/<%= event.id %>"><%= if event.title != "" then event.title  else "Untitled" end %></a></div>
           <% end %>
         </div>
-        <div class="table_nav" data-table="events">
+        <div class="table_nav" data-type="events" data-offset="0">
           <span class="light_weight">Page</span>
           <span class="current_page">1</span>
           <a class="button">&lsaquo;</a><a class="button">&rsaquo;</a>
         </div>
       <% else %>
         <div class="table_content">
-          <div class="nothing_here">Nothing to see here.</div>
+          <div class="nothing_here">Nothing here.</div>
         </div>
       <% end %>
     </div>

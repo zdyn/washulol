@@ -13,6 +13,8 @@ window.Utils =
           else
             data[element.name] = $(element).val()
     data
+  preloadImages: (images) ->
+    $("<img />")[0].src = src for src in images
 
 $ = jQuery
 $.fn.animateButton = (animateText, animateColor, animateDuration, endText, endDuration, callback) ->
