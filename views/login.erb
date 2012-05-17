@@ -11,24 +11,24 @@
     <script src="/js/login.js"></script>
   </head>
   <body>
-    <div id="login_sidebar">
+    <div id="loginSidebar">
       <div class="content">
-        <div id="site_logo">
+        <div id="siteLogo">
           <img src="/images/logo-pink-2.png" />
         </div>
-        <div id="site_info">
-          <div id="site_name"><a class="b" href="/">washulol</a></div>
+        <div id="siteInfo">
+          <div id="siteName"><a class="b" href="/">washulol</a></div>
         </div>
       </div>
     </div>
-    <div id="login_container">
+    <div id="loginContainer">
       <div class="content">
         <form action="/authenticate" data-url="<%= request %>">
-          <div class="input_text">
+          <div class="inputText">
             <input type="text" class="placeholder title" data-placeholder="Email" tabindex="-1" />
             <input type="text" class="title" maxlength=100 name="email" />
           </div>
-          <div class="input_text">
+          <div class="inputText">
             <input type="text" class="placeholder title" data-placeholder="Password" tabindex="-1" />
             <input type="password" class="title" maxlength=100 name="password" />
           </div>

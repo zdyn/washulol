@@ -1,59 +1,86 @@
 <script src="/js/admin.js"></script>
-<div class="section_container">
+<div class="sectionContainer">
   <div class="section">
     <div class="table">
-      <div class="table_header">
-        <div class="table_title">Blog Posts</div>
-        <div class="table_buttons">
-          <a class="button" href="/admin/blog_post">NEW</a>
+      <div class="tableHeader">
+        <div class="tableTitle">Blog Posts</div>
+        <div class="tableButtons">
+          <a class="button add" href="/admin/blog_post">NEW</a>
         </div>
         <div class="clear"></div>
       </div>
       <% if blog_posts.count > 0 %>
-        <div class="table_content">
-          <% blog_posts.limit(5).each do |blog_post| %>
-            <div class="row"><a class="b" href="/admin/blog_post/<%= blog_post.id %>"><%= if blog_post.title != "" then blog_post.title  else "Untitled" end %></a></div>
-          <% end %>
+        <div class="tableContentContainer">
+          <div class="tableContent">
+            <% blog_posts.limit(5).each do |blog_post| %>
+              <div class="row">
+                <% if blog_post.public %>
+                  <img src="/icons/check_green.png" />
+                <% else %>
+                  <img src="/icons/pencil_red.png" />
+                <% end %>
+                <a class="b" href="/admin/blog_post/<%= blog_post.id %>"><%= if blog_post.title != "" then blog_post.title else "Untitled" end %></a>
+              </div>
+            <% end %>
+          </div>
         </div>
-        <div class="table_nav" data-type="blog_posts" data-offset="0">
-          <span class="light_weight">Page</span>
-          <span class="current_page">1</span>
+        <div class="tableNav" data-type="blog_posts" data-offset="0">
+          <span class="lightWeight">Page</span>
+          <span class="currentPage">1</span>
           <a class="button">&lsaquo;</a><a class="button">&rsaquo;</a>
         </div>
       <% else %>
-        <div class="table_content">
-          <div class="nothing_here">Nothing here.</div>
+        <div class="tableContent">
+          <div class="nothingHere">Nothing here.</div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-<div class="section_container">
+<div class="sectionContainer">
   <div class="section">
     <div class="table">
-      <div class="table_header">
-        <div class="table_title">Events</div>
-        <div class="table_buttons">
-          <a class="button" href="/admin/event">NEW</a>
+      <div class="tableHeader">
+        <div class="tableTitle">Events</div>
+        <div class="tableButtons">
+          <a class="button add" href="/admin/event">NEW</a>
         </div>
         <div class="clear"></div>
       </div>
       <% if events.count > 0 %>
-        <div class="table_content">
-          <% events.limit(5).each do |event| %>
-            <div class="row"><a class="b" href="/admin/event/<%= event.id %>"><%= if event.title != "" then event.title  else "Untitled" end %></a></div>
-          <% end %>
+        <div class="tableContentContainer">
+          <div class="tableContent">
+            <% events.limit(5).each do |event| %>
+              <div class="row"><a class="b" href="/admin/event/<%= event.id %>"><%= if event.title != "" then event.title else "Untitled" end %></a></div>
+            <% end %>
+          </div>
         </div>
-        <div class="table_nav" data-type="events" data-offset="0">
-          <span class="light_weight">Page</span>
-          <span class="current_page">1</span>
+        <div class="tableNav" data-type="events" data-offset="0">
+          <span class="lightWeight">Page</span>
+          <span class="currentPage">1</span>
           <a class="button">&lsaquo;</a><a class="button">&rsaquo;</a>
         </div>
       <% else %>
-        <div class="table_content">
-          <div class="nothing_here">Nothing here.</div>
+        <div class="tableContent">
+          <div class="nothingHere">Nothing here.</div>
         </div>
       <% end %>
+    </div>
+  </div>
+</div>
+<div class="sectionContainer">
+  <div class="section">
+    <div class="table">
+      <div class="tableHeader">
+        <div class="tableTitle">Photos</div>
+        <div class="tableButtons">
+          <a class="button add" href="/admin/photos">NEW</a>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="tableContent">
+        <div class="nothingHere">Nothing here.</div>
+      </div>
     </div>
   </div>
 </div>

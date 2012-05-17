@@ -1,8 +1,9 @@
 $ ->
-  $(".table_nav").on "click", ".button", (e) ->
+  $(".tableNav").on "click", ".button", (e) ->
     return if $(this).data("requesting")
-    table_nav = $(this).closest(".table_nav")
-    offset = parseInt(table_nav.data("offset"), 10) + (if !$(this).prev(".button")[0] then -5 else 5)
+    tableNav = $(this).closest(".tableNav")
+    direction = if !$(this).prev(".button")[0] then -1 else 1
+    offset = parseInt(tableNav.data("offset"), 10) + (direction * 5)
     return if offset < 0
     text = $(this).html()
     $(this).html("...").css("backgroundColor", "#ec008b").data("requesting", true)
@@ -10,14 +11,40 @@ $ ->
       type: "post"
       url: "/admin/get_articles"
       data:
-        type: table_nav.data("type")
+        type: tableNav.data("type")
         offset: offset
       success: (data) =>
-        table_nav.siblings(".table_content").animate(
-          left: "-=980"
-        , 500, =>
+        data = JSON.parse(data)
+        if data.length == 0
           $(this).html(text).removeAttr("style").removeData("requesting")
+          return false
+        newRows = $("<div class='tableContent'>" + $.map(data, (row, i) ->
+          console.log(row.public)
+          "<div class='row'>" +
+            "<img src='/icons/#{ if row.public then "check_green" else "pencil_red" }.png' />\n" +
+            "<a class='b' href='/admin/blog_post/#{ row.id }'>#{ if row.title != "" then row.title else "Untitled" }</a>" +
+          "</div>"
+        ).join("") + "</div>").css(
+          position: "absolute"
+          top: 0
+          right: -980 * direction
+          width: "100%"
         )
+        container = tableNav.siblings(".tableContentContainer")
+        container.find(".tableContent").css(
+          position: "absolute"
+          top: 0
+          left: 0
+          width: "100%"
+        ).animate { left: -980 * direction }, 200, ->
+          $(this).remove()
+        container.append(newRows)
+        newRows.animate { right: 0 }, 200, =>
+          pageNumber = $(this).siblings(".currentPage")
+          newRows.removeAttr("style")
+          tableNav.data("offset", offset)
+          pageNumber.html(parseInt(pageNumber.html(), 10) + direction)
+          $(this).html(text).removeAttr("style").removeData("requesting")
       error: =>
         $(this).animateButton "!", "#cc0000", 200, text, 1000, ->
           $(this).removeData("requesting")

@@ -1,0 +1,64 @@
+<script src="/js/form.js"></script>
+<div class="sectionContainer">
+  <div class="section">
+    <form action="/admin/photos" data-delete-action="/admin/delete_photos" data-preview-action="/admin/photos_preview">
+      <input type="text" class="hidden" name="id" value="<%= photos.id %>" />
+      <input type="checkbox" class="hidden" name="public" <%= "checked" if photos.public %> />
+      <div class="inputText">
+        <input type="text" class="placeholder title" data-placeholder="Album name here" tabindex="-1" />
+        <input type="text" class="title" maxlength=100 name="title" value="<%= photos.title %>" />
+      </div>
+      <br />
+      <div class="table">
+        <div class="tableHeader">
+          <div class="tableTitle">Upload Photos</div>
+          <div class="tableButtons">
+            <a class="button add addPhotos">ADD<input class="invisible inputFile" type="file" multiple /></a>
+            <a class="button upload uploadPhotos">UPLOAD</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="tableContent">
+          <div class="row">
+            <img src="/icons/cancel.png" />
+            photo1.jpg
+          </div>
+          <div class="row">
+            <img src="/icons/cancel.png" />
+            photo2.jpg
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="photoPreview">
+        <div class="title">Album Photos</div>
+        <div class="content">
+          <div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-2.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-3.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-2.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-2.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-3.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
+          </div><div class="imgBorder thumbnail">
+            <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+  <%= erb :_buttons, :locals => { :public => photos.public }, :layout => false %>
+</div>

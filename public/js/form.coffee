@@ -1,5 +1,5 @@
 $ = jQuery
-$.fn.articleForm = ->
+$.fn.washulolForm = ->
   sectionContainer = this;
   defaults =
     saving: false
@@ -8,13 +8,15 @@ $.fn.articleForm = ->
   $.extend(sectionContainer, {
     init: ->
       this.on "click", "a.button.back", @back
-      this.on "click", "a.button.toggle_preview", @toggleArticlePreview
-      this.on "click", "a.button.toggle_public", @togglePublic
-      this.on "click", "a.button.save", @saveArticle
-      this.on "click", "a.button.delete", @deleteArticle
+      this.on "click", "a.button.togglePreview", @togglePreview
+      this.on "click", "a.button.togglePublic", @togglePublic
+      this.on "click", "a.button.save", @save
+      this.on "click", "a.button.delete", @delete
+      this.on "click", "a.button.addPhotos", @addPhotos
+      this.on "click", "a.button.uploadPhotos", @uploadPhotos
     back: (e) ->
       location.href = "/admin"
-    toggleArticlePreview: (e) ->
+    togglePreview: (e) ->
       return if sectionContainer.previewing
       section = sectionContainer.find(".section")
       article = section.siblings(".article")
@@ -23,11 +25,12 @@ $.fn.articleForm = ->
         section.show()
         article.remove()
       else
+        form = sectionContainer.find("form")
         sectionContainer.previewing = true
         $.ajax
           type: "post"
-          url: "/admin/article_preview"
-          data: Utils.getFormData(sectionContainer.find("form"))
+          url: form.data("previewAction")
+          data: Utils.getFormData(form)
           success: (html) =>
             sectionContainer.previewing = false
             sectionContainer.prepend($(html).css("border", "none")).find(".section").hide()
@@ -41,7 +44,7 @@ $.fn.articleForm = ->
           if $(this).hasClass("red") then "/icons/pencil.png" else "/icons/check.png")
       $(this).find("span").html(if $(this).hasClass("red") then "DRAFT" else "PUBLIC")
       sectionContainer.find("input[name=public]").attr("checked", not $(this).hasClass("red"))
-    saveArticle: (e) ->
+    save: (e) ->
       return false if sectionContainer.saving
       form = sectionContainer.find("form")
       $(this).html("SAVING...").css("backgroundColor", "#ec008b")
@@ -59,7 +62,7 @@ $.fn.articleForm = ->
         error: =>
           $(this).animateButton "ERROR!", "#cc0000", 200, "SAVE", 1000, ->
             sectionContainer.saving = false
-    deleteArticle: (e) ->
+    delete: (e) ->
       return false if sectionContainer.deleting
       form = sectionContainer.find("form")
       return false if not form.find("input[name=id]").val()
@@ -73,11 +76,18 @@ $.fn.articleForm = ->
         error: =>
           $(this).animateButton "ERROR!", "#cc0000", 200, "DELETE", 1000, ->
             sectionContainer.deleting = false
+    addPhotos: (e) ->
+      return
+    uploadPhotos: (e) ->
+      $(this).html("UPLOADING...").css("backgroundColor", "#ec008b")
+      setTimeout(=>
+        $(this).animateButton "UPLOADED!", "#008000", 200, "UPLOAD", 1000
+      , 2000)
   }, defaults)
   sectionContainer.init()
 
 $ ->
-  $(".section_container").articleForm()
+  $(".sectionContainer").washulolForm()
   Utils.preloadImages([
     "/icons/pencil.png",
     "/icons/check.png"

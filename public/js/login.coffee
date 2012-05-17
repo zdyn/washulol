@@ -30,4 +30,4 @@ $.fn.login = ->
   login.init()
 
 $ ->
-  $("#login_container form").login()
+  $("#loginContainer form").login()

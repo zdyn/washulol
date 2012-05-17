@@ -74,9 +74,9 @@ class WashuLOL < Sinatra::Base
   post "/admin/get_articles" do
     case params[:type]
       when "blog_posts"
-        Article.select(:id, :title).filter(:event_id => nil).limit(5, params[:offset]).to_json
+        Article.select(:id, :title, :public).filter(:event_id => nil).limit(5, params[:offset]).to_json
       when "events"
-        Article.select(:id, :title).exclude(:event_id => nil).limit(5, params[:offset]).to_json
+        Article.select(:id, :title, :public).exclude(:event_id => nil).limit(5, params[:offset]).to_json
       else
         nil
     end
@@ -137,6 +137,13 @@ class WashuLOL < Sinatra::Base
     event = Article.new
 
     admin_erb :event_form, :locals => { :event => event }
+  end
+
+  get "/admin/photos/?" do
+    @title += " New Photo Album"
+    photos = Article.new
+
+    admin_erb :photos_form, :locals => { :photos => photos }
   end
 
   # helper methods

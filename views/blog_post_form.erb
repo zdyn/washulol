@@ -1,10 +1,10 @@
-<script src="/js/article_form.js"></script>
-<div class="section_container">
+<script src="/js/form.js"></script>
+<div class="sectionContainer">
   <div class="section">
-    <form action="/admin/save_blog_post" data-delete-action="/admin/delete_blog_post">
+    <form action="/admin/save_blog_post" data-delete-action="/admin/delete_blog_post" data-preview-action="/admin/article_preview">
       <input type="text" class="hidden" name="id" value="<%= blog_post.id %>" />
       <input type="checkbox" class="hidden" name="public" <%= "checked" if blog_post.public %> />
-      <div class="input_text">
+      <div class="inputText">
         <input type="text" class="placeholder title" data-placeholder="Title here" tabindex="-1" />
         <input type="text" class="title" maxlength=100 name="title" value="<%= blog_post.title %>" />
       </div>

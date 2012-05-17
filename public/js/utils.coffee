@@ -15,11 +15,35 @@ window.Utils =
     data
   preloadImages: (images) ->
     $("<img />")[0].src = src for src in images
+  positionThumbnails: ->
+    for thumbnail in $(".thumbnail")
+      imgHolder = $(thumbnail).find(".img")
+      width = imgHolder.width()
+      height = imgHolder.height()
+      img = imgHolder.find("img")
+      if img.width() / width > img.height() / height
+        img.css(
+          width: height * img.width() / img.height()
+          height: height
+        )
+      else
+        img.css(
+          height: width * img.height() / img.width()
+          width: width
+        )
+      img.css(
+        top: (height - img.height()) / 2
+        left: (width - img.width()) / 2
+      )
+      $(thumbnail).animate({ opacity: 1 }, 200)
 
 $ = jQuery
 $.fn.animateButton = (animateText, animateColor, animateDuration, endText, endDuration, callback) ->
   this.html(animateText).animate { backgroundColor: animateColor }, animateDuration, =>
     setTimeout =>
       $(this).html(endText).removeAttr("style")
-      callback()
+      callback() if callback
     , endDuration
+
+$(window).load ->
+  Utils.positionThumbnails()

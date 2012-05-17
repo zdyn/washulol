@@ -1,21 +1,21 @@
-<script src="/js/article_form.js"></script>
-<div class="section_container">
+<script src="/js/form.js"></script>
+<div class="sectionContainer">
   <div class="section">
     <form action="/admin/event" data-delete-action="/admin/delete_event">
       <input type="text" class="hidden" name="id" value="<%= event.id %>" />
       <input type="checkbox" class="hidden" name="public" <%= "checked" if event.public %> />
-      <div class="input_text">
+      <div class="inputText">
         <input type="text" class="placeholder title" data-placeholder="Event name here" tabindex="-1" />
         <input type="text" class="title" maxlength=100 name="title" value="<%= event.title %>" />
       </div>
       <br />
-      <div class="input_text">
+      <div class="inputText">
         <input type="text" class="placeholder" data-placeholder="Location here" tabindex="-1" />
         <input type="text" maxlength=100 name="location" value="" />
       </div>
       <br />
       <div class="textarea">
-        <textarea class="placeholder" data-placeholder="Write post here" tabindex="-1"></textarea>
+        <textarea class="placeholder" data-placeholder="Write about event here" tabindex="-1"></textarea>
         <textarea maxlength=2000 name="post"><%= event.post %></textarea>
       </div>
     </form>

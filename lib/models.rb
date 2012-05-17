@@ -7,6 +7,7 @@ DB = Sequel.connect(:host => DB_HOST, :user => DB_USER, :password => DB_PASSWORD
 
 Sequel::Model.plugin :association_dependencies
 Sequel::Model.plugin :timestamps
+Sequel::Model.plugin :json_serializer
 
 require_relative "../models/article.rb"
 require_relative "../models/event.rb"

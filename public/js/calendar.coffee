@@ -5,7 +5,7 @@ do ->
     year: current_date.getFullYear()
     month: current_date.getMonth()
     date: current_date.getDate()
-    selected_date: null
+    selectedDate: null
 
   $.fn.calendar = (options) ->
     if(this.length > 1)
