@@ -2,7 +2,7 @@ window.Utils =
   getFormData: (form, filter = "") ->
     data = {}
     elements = form.find("input, textarea")
-    elements.filter(filter) if filter
+    elements = elements.filter(filter) if filter
     for element in elements
       if element.name
         switch element.type

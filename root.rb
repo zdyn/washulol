@@ -71,6 +71,13 @@ class WashuLOL < Sinatra::Base
     admin_erb :admin, :locals => { :blog_posts => blog_posts, :events => events }
   end
 
+  get "/admin/settings/?" do
+    @title += " Settings"
+    users = Users.all
+
+    admin_erb :settings, :locals => { :users => users }
+  end
+
   post "/admin/get_articles" do
     case params[:type]
       when "blog_posts"
@@ -139,11 +146,20 @@ class WashuLOL < Sinatra::Base
     admin_erb :event_form, :locals => { :event => event }
   end
 
-  get "/admin/photos/?" do
+  get "/admin/album/?" do
     @title += " New Photo Album"
     photos = Article.new
 
     admin_erb :photos_form, :locals => { :photos => photos }
+  end
+
+  # generate an album preview
+  post "/admin/album_preview" do
+
+  end
+
+  post "/admin/upload_photos" do
+
   end
 
   # helper methods

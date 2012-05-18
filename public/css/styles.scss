@@ -436,10 +436,19 @@ nav {
             text-overflow: ellipsis;
 
             &:first-child { border-top: 1px solid #e7e7e7; }
-            img {
-              margin-top: 2px;
-              margin-right: 4px;
+            .delete {
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              margin-right: 6px;
+              padding: 2px;
+              background: url("/icons/cancel.png") no-repeat center;
               vertical-align: top;
+
+              &:hover {
+                cursor: pointer;
+                background: url("/icons/cancel_red.png") no-repeat center;
+              }
             }
           }
         }

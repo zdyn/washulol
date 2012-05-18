@@ -1,7 +1,7 @@
 <script src="/js/form.js"></script>
 <div class="sectionContainer">
   <div class="section">
-    <form action="/admin/photos" data-delete-action="/admin/delete_photos" data-preview-action="/admin/photos_preview">
+    <form action="/admin/photos" data-delete-action="/admin/delete_photos" data-preview-action="/admin/album_preview" data-upload-action="/admin/upload_photos">
       <input type="text" class="hidden" name="id" value="<%= photos.id %>" />
       <input type="checkbox" class="hidden" name="public" <%= "checked" if photos.public %> />
       <div class="inputText">
@@ -9,32 +9,27 @@
         <input type="text" class="title" maxlength=100 name="title" value="<%= photos.title %>" />
       </div>
       <br />
-      <div class="table">
+      <div id="uploadList" class="table" action="/admin/upload_photos">
         <div class="tableHeader">
           <div class="tableTitle">Upload Photos</div>
           <div class="tableButtons">
-            <a class="button add addPhotos">ADD<input class="invisible inputFile" type="file" multiple /></a>
-            <a class="button upload uploadPhotos">UPLOAD</a>
+            <a class="button add addFiles">ADD<input class="invisible inputFile files" type="file" multiple /></a>
+            <a class="button upload uploadFiles">UPLOAD</a>
           </div>
           <div class="clear"></div>
         </div>
-        <div class="tableContent">
-          <div class="row">
-            <img src="/icons/cancel.png" />
-            photo1.jpg
-          </div>
-          <div class="row">
-            <img src="/icons/cancel.png" />
-            photo2.jpg
-          </div>
+        <div class="tableContent fileList">
+          <!--<div class="row"><a class="delete"></a>photo1.jpg</div>
+          <div class="row"><a class="delete"></a>photo1.jpg</div>-->
+          <div class="nothingHere">Nothing here.</div>
         </div>
       </div>
       <br />
       <br />
-      <div class="photoPreview">
+      <div id="photos" class="photoPreview">
         <div class="title">Album Photos</div>
         <div class="content">
-          <div class="imgBorder thumbnail">
+          <!--<div class="imgBorder thumbnail">
             <div class="img"><img src="/galleries/spring-2012/test-image-2.jpg" /></div>
           </div><div class="imgBorder thumbnail">
             <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
@@ -54,7 +49,8 @@
             <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
           </div><div class="imgBorder thumbnail">
             <div class="img"><img src="/galleries/spring-2012/test-image-1.jpg" /></div>
-          </div>
+          </div>-->
+          <div class="nothingHere">Nothing here.</div>
         </div>
       </div>
     </form>

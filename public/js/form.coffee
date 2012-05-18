@@ -5,6 +5,8 @@ $.fn.washulolForm = ->
     saving: false
     deleting: false
     previewing: false
+    uploading: false
+    formData: null
   $.extend(sectionContainer, {
     init: ->
       this.on "click", "a.button.back", @back
@@ -12,8 +14,10 @@ $.fn.washulolForm = ->
       this.on "click", "a.button.togglePublic", @togglePublic
       this.on "click", "a.button.save", @save
       this.on "click", "a.button.delete", @delete
-      this.on "click", "a.button.addPhotos", @addPhotos
-      this.on "click", "a.button.uploadPhotos", @uploadPhotos
+      this.on "click", "a.button.uploadFiles", @uploadFiles
+      this.on "change", "input:file", @uploadChange
+      if FormData
+        sectionContainer.formData = new FormData()
     back: (e) ->
       location.href = "/admin"
     togglePreview: (e) ->
@@ -30,7 +34,7 @@ $.fn.washulolForm = ->
         $.ajax
           type: "post"
           url: form.data("previewAction")
-          data: Utils.getFormData(form)
+          data: Utils.getFormData(form, ":not(.files)")
           success: (html) =>
             sectionContainer.previewing = false
             sectionContainer.prepend($(html).css("border", "none")).find(".section").hide()
@@ -52,7 +56,7 @@ $.fn.washulolForm = ->
       $.ajax
         type: "post"
         url: form.attr("action")
-        data: Utils.getFormData(form)
+        data: Utils.getFormData(form, ":not(.files)")
         success: (data) =>
           data = JSON.parse(data)
           history.replaceState(null, null, data["url"])
@@ -76,13 +80,37 @@ $.fn.washulolForm = ->
         error: =>
           $(this).animateButton "ERROR!", "#cc0000", 200, "DELETE", 1000, ->
             sectionContainer.deleting = false
-    addPhotos: (e) ->
-      return
-    uploadPhotos: (e) ->
+    uploadFiles: (e) ->
+      return false if sectionContainer.uploading
       $(this).html("UPLOADING...").css("backgroundColor", "#ec008b")
-      setTimeout(=>
-        $(this).animateButton "UPLOADED!", "#008000", 200, "UPLOAD", 1000
-      , 2000)
+      form = sectionContainer.find("form")
+      sectionContainer.uploading = true
+      $.ajax
+        xhr: ->
+          xhr = $.ajaxSettings.xhr()
+          if xhr instanceof XMLHttpRequest and xhr.upload
+            xhr.upload.addEventListener("progress", (e) ->
+              console.log(e.loaded + " " + e.total)
+            , false)
+          return xhr
+        type: "post"
+        url: form.data("uploadAction")
+        data: sectionContainer.formData || Utils.getFormData(form, ".files")
+        processData: false
+        contentType: false
+        success: (data) =>
+          $(this).animateButton "UPLOADED!", "#008000", 200, "UPLOAD", 1000, ->
+            sectionContainer.uploading = false
+        error: =>
+          $(this).animateButton "ERROR!", "#cc0000", 200, "UPLOAD", 1000, ->
+            sectionContainer.uploading = false
+    uploadChange: (e) ->
+      fileList = sectionContainer.find(".fileList")
+      fileList.html(if this.files.length == 0 then "<div class='nothingHere'>Nothing here.</div>" else "")
+      for file in this.files
+        if sectionContainer.formData
+          sectionContainer.formData.append("images[]", file)
+          fileList.append("<div class='row'><a class='delete'></a>#{ file.name }</div>")
   }, defaults)
   sectionContainer.init()
 
