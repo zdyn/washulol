@@ -29,6 +29,7 @@ class WashuLOL < Sinatra::Base
       end
       self.current_user = user
       session[:email] = user.email
+      session[:request] = nil
       nil
     end
   end
@@ -159,7 +160,9 @@ class WashuLOL < Sinatra::Base
   end
 
   post "/admin/upload_photos" do
-
+    unless params[:images]
+      halt 400, "Could not read images."
+    end
   end
 
   # helper methods

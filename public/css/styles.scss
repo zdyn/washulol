@@ -120,6 +120,8 @@ textarea {
   padding-right: 10px;
   line-height: 24px;
   resize: none;
+
+  &.short { min-height: 100px; }
 }
 // utility
 .clear { clear: both; }
@@ -417,7 +419,7 @@ nav {
               line-height: 20px;
               text-align: center;
 
-              &.add { width: 36px; }
+              &.add { width: 80px; }
               &.upload { width: 100px; }
             }
           }
@@ -436,7 +438,13 @@ nav {
             text-overflow: ellipsis;
 
             &:first-child { border-top: 1px solid #e7e7e7; }
-            .delete {
+            img {
+              margin-top: 2px;
+              margin-left: 2px;
+              margin-right: 8px;
+              vertical-align: top;
+            }
+            .removeFile {
               display: inline-block;
               width: 16px;
               height: 16px;

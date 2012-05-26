@@ -1,3 +1,5 @@
+$ = jQuery
+
 window.Utils =
   getFormData: (form, filter = "") ->
     data = {}
@@ -35,15 +37,19 @@ window.Utils =
         top: (height - img.height()) / 2
         left: (width - img.width()) / 2
       )
-      $(thumbnail).animate({ opacity: 1 }, 200)
+      $(thumbnail).animate({ opacity: 1 }, 100)
 
-$ = jQuery
 $.fn.animateButton = (animateText, animateColor, animateDuration, endText, endDuration, callback) ->
   this.html(animateText).animate { backgroundColor: animateColor }, animateDuration, =>
     setTimeout =>
       $(this).html(endText).removeAttr("style")
       callback() if callback
     , endDuration
+
+Array.prototype.remove = (start, end) ->
+  rest = this.slice((end || start) + 1 || this.length);
+  this.length = start < 0 ? this.length + start : start;
+  return this.push.apply(this, rest);
 
 $(window).load ->
   Utils.positionThumbnails()

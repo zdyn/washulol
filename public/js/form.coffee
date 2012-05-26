@@ -6,7 +6,7 @@ $.fn.washulolForm = ->
     deleting: false
     previewing: false
     uploading: false
-    formData: null
+    files: []
   $.extend(sectionContainer, {
     init: ->
       this.on "click", "a.button.back", @back
@@ -16,8 +16,7 @@ $.fn.washulolForm = ->
       this.on "click", "a.button.delete", @delete
       this.on "click", "a.button.uploadFiles", @uploadFiles
       this.on "change", "input:file", @uploadChange
-      if FormData
-        sectionContainer.formData = new FormData()
+      this.on "click", "a.removeFile", @removeFile
     back: (e) ->
       location.href = "/admin"
     togglePreview: (e) ->
@@ -105,12 +104,19 @@ $.fn.washulolForm = ->
           $(this).animateButton "ERROR!", "#cc0000", 200, "UPLOAD", 1000, ->
             sectionContainer.uploading = false
     uploadChange: (e) ->
-      fileList = sectionContainer.find(".fileList")
-      fileList.html(if this.files.length == 0 then "<div class='nothingHere'>Nothing here.</div>" else "")
       for file in this.files
-        if sectionContainer.formData
-          sectionContainer.formData.append("images[]", file)
-          fileList.append("<div class='row'><a class='delete'></a>#{ file.name }</div>")
+        sectionContainer.files.push(file)
+      sectionContainer.updateFileList()
+      $(this).val("")
+    removeFile: (e) ->
+      index = $(this).parent().index(".row")
+      sectionContainer.files.remove(index)
+      sectionContainer.updateFileList()
+    updateFileList: ->
+      fileList = sectionContainer.find(".fileList")
+      fileList.html(if sectionContainer.files.length == 0 then "<div class='nothingHere'>Nothing here.</div>" else "")
+      for file in sectionContainer.files
+        fileList.append("<div class='row'><a class='removeFile'></a>#{ file.name }</div>")
   }, defaults)
   sectionContainer.init()
 

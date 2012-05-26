@@ -9,18 +9,21 @@
         <input type="text" class="title" maxlength=100 name="title" value="<%= photos.title %>" />
       </div>
       <br />
+      <div class="textarea">
+        <textarea class="placeholder short" data-placeholder="Album description here" tabindex="-1"></textarea>
+        <textarea class="short" maxlength=2000 name="post"><%= photos.post %></textarea>
+      </div>
+      <br />
       <div id="uploadList" class="table" action="/admin/upload_photos">
         <div class="tableHeader">
           <div class="tableTitle">Upload Photos</div>
           <div class="tableButtons">
-            <a class="button add addFiles">ADD<input class="invisible inputFile files" type="file" multiple /></a>
+            <a class="button add addFiles">SELECT<input class="invisible inputFile files" type="file" multiple /></a>
             <a class="button upload uploadFiles">UPLOAD</a>
           </div>
           <div class="clear"></div>
         </div>
         <div class="tableContent fileList">
-          <!--<div class="row"><a class="delete"></a>photo1.jpg</div>
-          <div class="row"><a class="delete"></a>photo1.jpg</div>-->
           <div class="nothingHere">Nothing here.</div>
         </div>
       </div>
