@@ -19,9 +19,8 @@ $ ->
           $(this).html(text).removeAttr("style").removeData("requesting")
           return false
         newRows = $("<div class='tableContent'>" + $.map(data, (row, i) ->
-          console.log(row.public)
           "<div class='row'>" +
-            "<img src='/icons/#{ if row.public then "check_green" else "pencil_red" }.png' />\n" +
+            "<div class='rowImg'>#{ if row.public then "<img src='/icons/check_green.png' />" else "" }</div>" +
             "<a class='b' href='/admin/blog_post/#{ row.id }'>#{ if row.title != "" then row.title else "Untitled" }</a>" +
           "</div>"
         ).join("") + "</div>").css(

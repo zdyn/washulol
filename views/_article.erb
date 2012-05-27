@@ -1,12 +1,8 @@
 <div class="article">
-  <div class="articleInfo">
-    <div class="articleCdate"><%= article.created_at.strftime("%^b %e %Y") %></div>
-    <div class="articleType"><a class="b" href=""><%= article.type %></a></div>
-  </div>
   <div class="articleContentContainer">
     <div class="articleContent">
       <div class="articleTitle"><a class="b" href=""><%= if article.title != "" then article.title  else "Untitled" end %></a></div>
-      <div class="articleAuthor"><span class="lightWeight">by</span> <a class="b" href=""><%= article.author %></a> <span class="lightWeight">(<%= article.relative_created_at %>)</span></div>
+      <div class="articleInfo"><span class="lightWeight">posted by</span> <a class="b" href=""><%= article.author %></a> <span class="lightWeight"><%= article.relative_created_at %> in</span> <a class="b" href=""><%= article.type %></a></div>
       <% if article.event %>
         <div class="eventInfo">
           <div class="eventData">

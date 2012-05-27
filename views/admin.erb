@@ -14,7 +14,7 @@
           <div class="tableContent">
             <% blog_posts.limit(5).each do |blog_post| %>
               <div class="row">
-                <img src="/icons/<%= blog_post.public ? "check_green" : "pencil_red" %>.png" /><a class="b" href="/admin/blog_post/<%= blog_post.id %>"><%= if blog_post.title != "" then blog_post.title else "Untitled" end %></a>
+                <div class="rowImg"><% if blog_post.public %><img src="/icons/check_green.png" /><% end %></div><a class="b" href="/admin/blog_post/<%= blog_post.id %>"><%= if blog_post.title != "" then blog_post.title else "Untitled" end %></a>
               </div>
             <% end %>
           </div>

@@ -116,7 +116,7 @@ $.fn.washulolForm = ->
       fileList = sectionContainer.find(".fileList")
       fileList.html(if sectionContainer.files.length == 0 then "<div class='nothingHere'>Nothing here.</div>" else "")
       for file in sectionContainer.files
-        fileList.append("<div class='row'><a class='removeFile'></a>#{ file.name }</div>")
+        fileList.append("<div class='row'><div class='rowImg'><a class='removeFile'></a></div>#{ file.name }</div>")
   }, defaults)
   sectionContainer.init()
 

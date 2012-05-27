@@ -295,36 +295,15 @@ nav {
   #articles, .sectionContainer {
 
     .article {
-      padding: 50px 20px;
+      padding: 40px 30px;
       border-bottom: 1px solid #d7d7d7;
 
       &:last-child {
         border: none;
       }
-      .articleInfo {
-        float: left;
-        width: 115px;
-        padding: 5px 0;
-        padding-right: 5px;
-        text-align: right;
-
-        .articleCdate {
-          font: {
-            weight: 300;
-            size: 18px;
-          }
-        }
-        .articleType {
-          margin-top: 4px;
-          font: {
-            weight: bold;
-            size: 16px;
-          }
-        }
-      }
       .articleContentContainer {
         float: left;
-        width: 820px;
+        width: 920px;
 
         .articleContent {
           padding: 0 10px;
@@ -334,7 +313,7 @@ nav {
             font-size: 24px;
             line-height: 24px;
           }
-          .articleAuthor { margin-top: 6px; }
+          .articleInfo { margin-top: 10px; }
           .eventInfo {
             margin-top: 15px;
             margin-bottom: 15px;
@@ -438,24 +417,27 @@ nav {
             text-overflow: ellipsis;
 
             &:first-child { border-top: 1px solid #e7e7e7; }
-            img {
-              margin-top: 2px;
-              margin-left: 2px;
-              margin-right: 8px;
-              vertical-align: top;
-            }
-            .removeFile {
+            .rowImg {
               display: inline-block;
               width: 16px;
               height: 16px;
-              margin-right: 6px;
+              margin-left: 2px;
+              margin-right: 8px;
               padding: 2px;
-              background: url("/icons/cancel.png") no-repeat center;
               vertical-align: top;
 
-              &:hover {
-                cursor: pointer;
-                background: url("/icons/cancel_red.png") no-repeat center;
+              img { vertical-align: top; }
+              .removeFile {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background: url("/icons/cancel.png") no-repeat center;
+                vertical-align: top;
+
+                &:hover {
+                  cursor: pointer;
+                  background: url("/icons/cancel_red.png") no-repeat center;
+                }
               }
             }
           }
