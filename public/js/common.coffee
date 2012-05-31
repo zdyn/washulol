@@ -13,4 +13,4 @@ $ ->
   , "input:text, input:password, textarea"
 
 init = ->
-  $(i).val(if $(i).siblings().val() then "" else $(i).data("placeholder")) for i in $(".placeholder")
+  $(i).val(if $(i).siblings(":not('.noClickOverlay')").val() then "" else $(i).data("placeholder")) for i in $(".placeholder")

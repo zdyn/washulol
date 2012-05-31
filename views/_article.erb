@@ -2,7 +2,7 @@
   <div class="articleContentContainer">
     <div class="articleContent">
       <div class="articleTitle"><a class="b" href=""><%= if article.title != "" then article.title  else "Untitled" end %></a></div>
-      <div class="articleInfo"><span class="lightWeight">posted by</span> <a class="b" href=""><%= article.author %></a> <span class="lightWeight"><%= article.relative_created_at %> in</span> <a class="b" href=""><%= article.type %></a></div>
+      <div class="articleInfo"><span class="lightWeight">posted in</span> <a class="b" href=""><%= article.category %></a> <span class="lightWeight">by</span> <a class="b" href=""><%= article.author %></a> <span class="lightWeight"><%= article.relative_created_at %></span></div>
       <% if article.event %>
         <div class="eventInfo">
           <div class="eventData">

@@ -26,10 +26,12 @@
         <form action="/authenticate" data-url="<%= request %>">
           <div class="inputText">
             <input type="text" class="placeholder title" data-placeholder="Email" tabindex="-1" />
+            <div class="noClickOverlay"></div>
             <input type="text" class="title" maxlength=100 name="email" />
           </div>
           <div class="inputText">
             <input type="text" class="placeholder title" data-placeholder="Password" tabindex="-1" />
+            <div class="noClickOverlay"></div>
             <input type="password" class="title" maxlength=100 name="password" />
           </div>
           <br />

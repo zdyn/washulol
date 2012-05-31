@@ -5,17 +5,7 @@ class Article < Sequel::Model
 
   def author
     return "washulol" unless self.user
-    return self.user.username || self.user.email
-  end
-
-  def type
-    if self.event
-      return "EVENTS"
-    elsif self.photo_preview
-      return "PHOTOS"
-    else
-      "BLOG"
-    end
+    self.user.username || self.user.email
   end
 
   def relative_created_at

@@ -13,6 +13,7 @@ Sequel.migration do
       primary_key :id
       String :title, :size=>100
       String :post, :size=>2000
+      String :category, :size=>100
       TrueClass :public
       DateTime :created_at
       DateTime :updated_at

@@ -1,0 +1,57 @@
+<script src="/js/form.js"></script>
+<div id="form">
+  <div class="sectionContainer formSection">
+    <div class="section">
+      <form id="main" action="/admin/save_album" data-delete-action="/admin/delete_album" data-preview-action="/admin/album_preview">
+        <input type="text" class="hidden" name="id" value="<%= album.id %>" />
+        <input type="checkbox" class="hidden" name="public" <%= "checked" if album.public %> />
+        <div class="inputText">
+          <input type="text" class="placeholder title" data-placeholder="Album name here" tabindex="-1" />
+          <div class="noClickOverlay"></div>
+          <input type="text" class="title" maxlength=100 name="title" value="<%= album.title %>" />
+        </div>
+        <br />
+        <div class="textarea">
+          <textarea class="placeholder short" data-placeholder="Album description here" tabindex="-1"></textarea>
+          <div class="noClickOverlay"></div>
+          <textarea class="short" maxlength=2000 name="post"><%= album.post %></textarea>
+        </div>
+        <br />
+      </form>
+    </div>
+  </div>
+  <div class="sectionContainer formSection">
+    <div class="section">
+      <form id="upload" action="/admin/upload_photos">
+        <div class="table uploadList">
+          <div class="browserWarningOverlay"></div>
+          <div class="browserWarning">Your browser does not support file uploading.</div>
+          <div class="tableHeader">
+            <div class="tableTitle">Upload Photos</div>
+            <div class="tableButtons">
+              <a class="button addFiles"><span>SELECT</span><input class="invisible inputFile files" title="" type="file" multiple /></a>
+              <a class="button upload uploadFiles">UPLOAD</a>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="tableContent fileList">
+            <div class="nothingHere">Nothing here.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="sectionContainer formSection">
+    <div class="section">
+      <form id="fileOrder" action="/admin/set_album_order">
+        <div class="photosPreview">
+          <div class="title">Album Photos</div>
+          <div class="content">
+            <div class="nothingHere">Nothing here.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <%= erb :_buttons, :locals => { :public => album.public }, :layout => false %>
+</div>

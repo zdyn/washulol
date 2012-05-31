@@ -1,19 +1,23 @@
 <script src="/js/form.js"></script>
-<div class="sectionContainer">
-  <div class="section">
-    <form action="/admin/save_blog_post" data-delete-action="/admin/delete_blog_post" data-preview-action="/admin/article_preview">
-      <input type="text" class="hidden" name="id" value="<%= blog_post.id %>" />
-      <input type="checkbox" class="hidden" name="public" <%= "checked" if blog_post.public %> />
-      <div class="inputText">
-        <input type="text" class="placeholder title" data-placeholder="Title here" tabindex="-1" />
-        <input type="text" class="title" maxlength=100 name="title" value="<%= blog_post.title %>" />
-      </div>
-      <br />
-      <div class="textarea">
-        <textarea class="placeholder" data-placeholder="Write post here" tabindex="-1"></textarea>
-        <textarea maxlength=2000 name="post"><%= blog_post.post %></textarea>
-      </div>
-    </form>
+<div id="form">
+  <div class="sectionContainer formSection">
+    <div class="section">
+      <form id="main" action="/admin/save_blog_post" data-delete-action="/admin/delete_blog_post" data-preview-action="/admin/article_preview">
+        <input type="text" class="hidden" name="id" value="<%= blog_post.id %>" />
+        <input type="checkbox" class="hidden" name="public" <%= "checked" if blog_post.public %> />
+        <div class="inputText">
+          <input type="text" class="placeholder title" data-placeholder="Title here" tabindex="-1" />
+          <div class="noClickOverlay"></div>
+          <input type="text" class="title" maxlength=100 name="title" value="<%= blog_post.title %>" />
+        </div>
+        <br />
+        <div class="textarea">
+          <textarea class="placeholder" data-placeholder="Write post here" tabindex="-1"></textarea>
+          <div class="noClickOverlay"></div>
+          <textarea maxlength=2000 name="post"><%= blog_post.post %></textarea>
+        </div>
+      </form>
+    </div>
   </div>
   <%= erb :_buttons, :locals => { :public => blog_post.public }, :layout => false %>
 </div>

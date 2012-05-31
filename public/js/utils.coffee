@@ -17,25 +17,27 @@ window.Utils =
     data
   preloadImages: (images) ->
     $("<img />")[0].src = src for src in images
-  positionThumbnails: ->
-    for thumbnail in $(".thumbnail")
+  positionThumbnails: (thumbnails = null) ->
+    for thumbnail in (thumbnails || $(".thumbnail"))
       imgHolder = $(thumbnail).find(".img")
-      width = imgHolder.width()
-      height = imgHolder.height()
+      holderWidth = imgHolder.width()
+      holderHeight = imgHolder.height()
       img = imgHolder.find("img")
-      if img.width() / width > img.height() / height
+      imgWidth = img.data("width") || img.width()
+      imgHeight = img.data("height") || img.height()
+      if imgWidth / imgHeight > holderWidth / holderHeight
         img.css(
-          width: height * img.width() / img.height()
-          height: height
+          width: holderHeight * imgWidth / imgHeight
+          height: holderHeight
         )
       else
         img.css(
-          height: width * img.height() / img.width()
-          width: width
+          height: holderWidth * imgHeight / imgWidth
+          width: holderWidth
         )
       img.css(
-        top: (height - img.height()) / 2
-        left: (width - img.width()) / 2
+        top: (holderHeight - imgHeight) / 2
+        left: (holderWidth - imgWidth) / 2
       )
       $(thumbnail).animate({ opacity: 1 }, 100)
 
@@ -46,9 +48,11 @@ $.fn.animateButton = (animateText, animateColor, animateDuration, endText, endDu
       callback() if callback
     , endDuration
 
+$.fn.showBrowserWarning = -> $(this).find("[class^='browserWarning']").show();
+
 Array.prototype.remove = (start, end) ->
   rest = this.slice((end || start) + 1 || this.length);
-  this.length = start < 0 ? this.length + start : start;
+  this.length = if start < 0 then this.length + start else start;
   return this.push.apply(this, rest);
 
 $(window).load ->

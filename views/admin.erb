@@ -67,15 +67,32 @@
   <div class="section">
     <div class="table">
       <div class="tableHeader">
-        <div class="tableTitle">Photos</div>
+        <div class="tableTitle">Photo Albums</div>
         <div class="tableButtons">
           <a class="button add" href="/admin/album">NEW</a>
         </div>
         <div class="clear"></div>
       </div>
-      <div class="tableContent">
-        <div class="nothingHere">Nothing here.</div>
-      </div>
+      <% if albums.count > 0 %>
+        <div class="tableContentContainer">
+          <div class="tableContent">
+            <% albums.limit(5).each do |album| %>
+              <div class="row">
+                <div class="rowImg"><% if album.public %><img src="/icons/check_green.png" /><% end %></div><a class="b" href="/admin/album/<%= album.id %>"><%= if album.title != "" then album.title else "Untitled" end %></a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="tableNav" data-type="albums" data-offset="0">
+          <span class="lightWeight">Page</span>
+          <span class="currentPage">1</span>
+          <a class="button">&lsaquo;</a><a class="button">&rsaquo;</a>
+        </div>
+      <% else %>
+        <div class="tableContent">
+          <div class="nothingHere">Nothing here.</div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
